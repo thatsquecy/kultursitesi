@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AE | E-Kültür</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">AE | E-Kültür</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Anasayfa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="kitaplar.html">Kitaplar </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="filmler.html">Filmler <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item  ">
+          <a class="nav-link" href="kutuphaneler.html">Kütüphane Konumları</a>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Aramalar
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="filmarat.html">Film Arat</a>
+            <a class="dropdown-item" href="kitaparat.html">Kitap Arat</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<br>
+<div class="container py-5">
+  <h1 class="text-center mb-5">Kitap Arama</h1>
+  <form class="d-flex mb-5">
+      <input type="text" class="form-control me-3" placeholder="Kitap adı girin...">
+      <button type="submit" class="btn btn-primary">Ara</button>
+  </form>
+  <div id="bookList"></div>
+</div>
+
+<!-- Bootstrap JS ve jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+<script>
+  const form = document.querySelector('form');
+  const bookList = document.querySelector('#bookList');
+
+  form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const bookTitle = document.querySelector('input[type="text"]').value;
+      bookList.innerHTML = '';
+      searchBooks(bookTitle);
+  });
+
+  async function searchBooks(bookTitle) {
+      const response = await fetch(`https://openlibrary.org/search.json?q=${bookTitle}`);
+      const data = await response.json();
+      const books = data.docs;
+      books.forEach((book) => {
+          const bookCover = book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : 'https://via.placeholder.com/100x150';
+          const bookInfo = `
+              <div class="card mb-3">
+                  <div class="row g-0">
+                      <div class="col-md-3">
+                          <img src="${bookCover}" alt="${book.title}" class="img-fluid">
+                      </div>
+                      <div class="col-md-9">
+                          <div class="card-body">
+                              <h5 class="card-title">${book.title}</h5>
+                              <p class="card-text">${book.author_name ? book.author_name.join(', ') : 'Yazar bilinmiyor'}</p>
+                              <p class="card-text"><small class="text-muted">${book.publisher ? book.publisher[0] : 'Yayıncı bilinmiyor'}, ${book.first_publish_year}</small></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          `;
+          bookList.insertAdjacentHTML('beforeend', bookInfo);
+      });
+  }
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+</body>
+<footer style="background-color: rgb(36, 36, 36) ;" class="footer3">
+  Onur Çapa ve Ahmet Eren Kocaçakır Tarafından Yapılmış, Hüseyin Akgül Tarafından Desteklenmiştir.
+</footer>
+</html>

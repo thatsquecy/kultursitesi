@@ -1,0 +1,64 @@
+.buyukbaslik{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 180%;
+    text-align: center;
+}
+.altbaslik{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-top: -4%;
+    font-size: 150%;
+    text-align: center;
+}
+.anabaslik{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-top: 1%;
+    font-size: 450%;
+    text-align: center;
+}
+.anabaslik2{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-top: 1%;
+    font-size: 450%;
+    text-align: center;
+}
+footer{
+    margin-top: 3%;
+    text-align: center;
+    color: white;
+    height: 5%;
+    background-color: grey;
+}
+.footer2{
+    margin-top: 1%;
+    text-align: center;
+    color: white;
+    height: 5%;
+    background-color: grey;
+}
+.footer3{
+    margin-top: 31.3%;
+    text-align: center;
+    color: white;
+    height: 5%;
+    background-color: grey;
+}
+.footer4{
+    margin-top: 36.5%;
+    text-align: center;
+    color: white;
+    height: 5%;
+    background-color: grey;
+}
+.footer5{
+    margin-top: 1.6%;
+    text-align: center;
+    color: white;
+    height: 5%;
+    background-color: grey;
+}
+.arkaplankitapli{
+    background-image: url("https://cdn.discordapp.com/attachments/882015307005300747/1083474849088946246/wallpaper.png");
+}
+.kitapbaslik{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
